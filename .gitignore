@@ -1,0 +1,32 @@
+# Patient audio and media
+*.m4a
+*.mp3
+*.wav
+*.flac
+*.aac
+*.mp4
+*.mov
+
+# Raw transcripts and private case data
+*.jsonl
+transcripts/
+private/
+Private/
+outputs/
+Outputs/
+cases-private/
+
+# Credentials and local environment
+.env
+.env.*
+*.key
+*.pem
+
+# Python and editor artifacts
+__pycache__/
+*.py[cod]
+.venv/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

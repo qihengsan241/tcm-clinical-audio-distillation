@@ -1,0 +1,4 @@
+interface:
+  display_name: "中医跟诊录音整理"
+  short_description: "整理病例、教学方法、老师经验与方药推理"
+  default_prompt: "请整理这份中医跟诊或师承录音，区分病例、教学单元、老师经验、方药理由、AI解释和待核对内容。"
