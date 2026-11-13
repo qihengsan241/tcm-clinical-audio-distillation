@@ -15,6 +15,11 @@ Private/
 outputs/
 Outputs/
 cases-private/
+dist/
+chunks/
+transcript_chunks.jsonl
+transcript_timestamped.md
+manifest.json
 
 # Credentials and local environment
 .env

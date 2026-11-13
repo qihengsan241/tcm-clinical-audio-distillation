@@ -59,7 +59,7 @@
 将本仓库目录复制到 Codex Skills 目录。例如：
 
 ```text
-D:\AI\Shared\Skills\tcm-clinical-audio-distillation
+C:\AI\Shared\Skills\tcm-clinical-audio-distillation
 ```
 
 也可以放入当前环境的个人 Skills 目录。确保目录中直接包含 `SKILL.md`。
@@ -79,6 +79,12 @@ D:\AI\Shared\Skills\tcm-clinical-audio-distillation
 ```
 
 输入可以是音频、带时间戳的转写稿或人工记录。若输入为音频，具体语音识别工具可按本机环境选择；Skill 不绑定某一家云端服务。
+
+## 云端运行
+
+仓库已经包含 Codex Cloud 项目级入口、`gpt-transcribe` 音频转写脚本、Hosted Skill 打包脚本和 GitHub Actions 校验。云端模式会先把大录音压缩并按 8 分钟分片，再逐段转写；原始音频和逐字稿只留在私有工作目录。
+
+完整配置、运行和发布方法见 [CLOUD.md](CLOUD.md)。云端环境需要一次性配置 `OPENAI_API_KEY` Secret；不得把 Key、患者录音或原始转写提交到 GitHub。
 
 ## 文件说明
 

@@ -52,6 +52,18 @@ AI解释可以独立存在，也可以连接多个病例，但必须符合医理
 7. 对儿童、孕产妇、老人、急症、高风险剂量、慢病停药或中西药相互作用单独标识风险；必要时核对权威资料。
 8. 输出可读整理稿和按时间定位的待核对清单。用户要求用于程序时，再提供结构化 JSON/YAML；不要用结构化数据取代可阅读文稿。
 
+## 云端音频模式
+
+当输入是音频且运行在 Codex Cloud、Hosted Shell 或其他无本地模型的云端环境时：
+
+1. 读取 [CLOUD.md](CLOUD.md)，确认 `OPENAI_API_KEY` 仅作为环境 Secret 存在，并确认 `ffmpeg`、`ffprobe` 和 Python 依赖可用。
+2. 把原始音频放在私有工作目录，运行 `python scripts/cloud_transcribe.py <audio> --out <private-run-dir>`。该脚本使用当前推荐的 `gpt-transcribe`，自动压缩和分片，避免超过单次 25 MB 限制。
+3. 原始音频、分片、逐字稿和病例身份信息不得写入 Git 或公开 artifact。只把去标识化成稿和用户明确需要的结构化数据写入输出目录。
+4. 脚本生成的是粗粒度时间定位。方名、药名、剂量、否定词和侵入性操作仍须结合原音、第二套识别或人工回听核验，不能因云端模型更强而省略核方状态。
+5. 云端缺少 API Secret 时停止在转写步骤，明确指出一次性配置项；不得改用未经用户选择的第三方转写服务，也不得把音频上传到公开链接。
+
+需要部署、打包或更新 Hosted Skill 时，使用 `scripts/package_skill.py` 生成只含一个 `SKILL.md` 的压缩包。不要把整个 Git 仓库直接当作 Skill 压缩包上传，因为仓库还包含项目级发现入口。
+
 ## 输出选择
 
 - 需要完整字段定义时，读取 [references/schema.md](references/schema.md)。

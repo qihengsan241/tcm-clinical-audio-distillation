@@ -1,0 +1,24 @@
+name: Validate Skill
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Build Hosted Skill bundle
+        run: python scripts/package_skill.py --out /tmp/tcm-clinical-audio-distillation.zip
+      - name: Inspect bundle
+        run: unzip -l /tmp/tcm-clinical-audio-distillation.zip
+
